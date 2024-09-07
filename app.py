@@ -16,6 +16,7 @@ CORS(app)
 
 # Load the saved Alzheimer's disease prediction model
 prediction_model = load_model('prediction_model2.h5')  # Use a separate variable for the prediction model
+prediction_model.compile()
 
 # Define image processing constants
 IMG_HEIGHT = 72
@@ -142,4 +143,6 @@ def predict():
 # Main entry point
 if __name__ == '__main__':
     # Run the Flask app
-    app.run(debug=True)
+   
+    port = int(os.environ.get("PORT", 5000))  # Use environment variable for the port
+    app.run(host='0.0.0.0', port=port, debug=True)
